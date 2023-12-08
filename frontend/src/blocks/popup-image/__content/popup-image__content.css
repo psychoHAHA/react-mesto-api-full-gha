@@ -1,0 +1,10 @@
+.popup-image__content {
+  box-sizing: border-box;
+  position: relative;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+}

@@ -1,0 +1,16 @@
+.group__button {
+  margin: 0;
+  padding: 0;
+  height: 19px;
+  width: 22px;
+  background: transparent;
+  border: 0;
+  background-image: url(../../../images/groupButton.svg);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.group__button:hover {
+  opacity: 0.5;
+  transform: scale(1.2);
+}

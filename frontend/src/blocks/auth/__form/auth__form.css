@@ -1,0 +1,8 @@
+.auth__form {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #000;
+}

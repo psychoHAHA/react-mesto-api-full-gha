@@ -1,0 +1,13 @@
+.auth__link {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  color: #fff;
+  text-decoration: none;
+  margin: 15px auto 0 auto;
+}
+
+.auth__link:hover {
+  opacity: 0.8;
+}

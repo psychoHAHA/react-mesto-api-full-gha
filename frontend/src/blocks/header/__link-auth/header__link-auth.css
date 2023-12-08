@@ -1,0 +1,21 @@
+.header__link-auth {
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+  text-decoration: none;
+  margin: 0;
+  padding: 8px 31.6px 0 0;
+}
+
+.header__link-auth:hover {
+  opacity: 0.8;
+}
+
+@media screen and (min-width: 880px) {
+  .header__link-auth {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

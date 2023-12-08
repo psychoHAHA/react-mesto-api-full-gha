@@ -1,0 +1,22 @@
+.popup-card__button {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  background-color: #000;
+  height: 50px;
+  border-radius: 2px;
+  padding: 0;
+  cursor: pointer;
+  color: #fff;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.popup-card__button:hover {
+  opacity: 0.8;
+}
