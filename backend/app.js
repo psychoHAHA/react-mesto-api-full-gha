@@ -26,6 +26,4 @@ app.use(errors());
 
 app.use(errorHandle);
 
-app.listen(PORT, () => {
-  console.log(123);
-});
+app.listen(PORT, () => {});
