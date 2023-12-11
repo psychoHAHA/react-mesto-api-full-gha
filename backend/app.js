@@ -22,12 +22,14 @@ mongoose.connect(MONGO_URL);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(router);
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://psychedelicmesto.nomoredomainsmonster.ru/' 'https://api.psychedelicmesto.nomoredomainsmonster.ru/'],
+  origin: ['http://localhost:3000', 'https://psychedelicmesto.nomoredomainsmonster.ru/', 'https://api.psychedelicmesto.nomoredomainsmonster.ru/'],
   credentials: true,
+  maxAge: 300000000,
 }));
+
+app.use(router);
 
 app.use(errors());
 
