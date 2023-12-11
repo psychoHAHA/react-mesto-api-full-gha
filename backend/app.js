@@ -6,6 +6,8 @@ const { errors } = require('celebrate');
 
 const express = require('express');
 
+const cors = require('cors');
+
 const router = require('./routes/index');
 
 const { errorHandle } = require('./middlewares/errorHandler');
@@ -21,6 +23,11 @@ mongoose.connect(MONGO_URL);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(router);
+
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://psychedelicmesto.nomoredomainsmonster.ru/' 'https://api.psychedelicmesto.nomoredomainsmonster.ru/'],
+  credentials: true,
+}));
 
 app.use(errors());
 
