@@ -25,9 +25,7 @@
     "mongoose": "^6.10.0",
     "validator": "^13.11.0",
     "validator-js": "^0.2.1",
-    "cors": "^2.8.5",
-    "winston": "^3.11.0",
-    "express-winston": "^4.2.0"
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "eslint": "^8.53.0",
