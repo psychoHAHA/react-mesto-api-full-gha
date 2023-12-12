@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP 158.160.82.154
+IP-адрес 158.160.82.154
 
 Frontend https://psychedelicmesto.nomoredomainsmonster.ru/
 
