@@ -3,6 +3,7 @@ import { apiConfig } from './constants';
 export default class Api {
   constructor({ url, headers }) {
     this._url = url;
+
     this._headers = headers;
   }
 
@@ -16,29 +17,38 @@ export default class Api {
 
   getUserData() {
     return fetch(`${this._url}/users/me`, {
+      method: 'GET',
+      credentials: 'include',
       headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
     }).then(this._getResponse);
   }
 
   getAllCards() {
     return fetch(`${this._url}/cards`, {
-      // headers: this._headers,
+      method: 'GET',
+      credentials: 'include',
       headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
     }).then(this._getResponse);
   }
 
   changeUserData(data) {
     return fetch(`${this._url}/users/me`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
-      },
+      credentials: 'include',
       method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('jwt')}`
+      },
+
       body: JSON.stringify({
         name: data.name,
+
         about: data.about,
       }),
     }).then(this._getResponse);
@@ -46,10 +56,13 @@ export default class Api {
 
   changeAvatarData(data) {
     return fetch(`${this._url}/users/me/avatar`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
-      },
+      credentials: 'include',
       method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('jwt')}`
+      },
+
       body: JSON.stringify({
         avatar: data.avatar,
       }),
@@ -58,12 +71,16 @@ export default class Api {
 
   createCard(data) {
     return fetch(`${this._url}/cards`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
-      },
+      credentials: 'include',
       method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('jwt')}`
+      },
+
       body: JSON.stringify({
         name: data.name,
+
         link: data.link,
       }),
     }).then(this._getResponse);
@@ -72,8 +89,10 @@ export default class Api {
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
+      credentials: 'include',
       headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
     }).then(this._getResponse);
   }
@@ -82,16 +101,17 @@ export default class Api {
     if (isLiked) {
       return fetch(`${this._url}/cards/${cardId}/likes`, {
         method: 'DELETE',
+        credentials: 'include',
         headers: {
-          authorization: `Bearer ${localStorage.getItem('jwt')}`,
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem('jwt')}`
         },
       }).then(this._getResponse);
     } else {
       return fetch(`${this._url}/cards/${cardId}/likes`, {
         method: 'PUT',
-        headers: {
-          authorization: `Bearer ${localStorage.getItem('jwt')}`,
-        },
+        credentials: 'include',
+        headers: this._headers,
       }).then(this._getResponse);
     }
   }
@@ -100,9 +120,15 @@ export default class Api {
 export const api = new Api(apiConfig);
 
 //   deleteLike(cardId) {
+
 //     return fetch(`${this._url}/cards/${cardId}/likes`, {
+
 //       method: 'DELETE',
+
 //       headers: this._headers,
+
 //     }).then(this._getResponse)
+
 //   }
+
 // }

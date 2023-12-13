@@ -6,7 +6,7 @@ const { errors } = require('celebrate');
 
 const express = require('express');
 
-const cors = require('cors');
+const cors = require('./middlewares/cors');
 
 const router = require('./routes/index');
 
@@ -19,18 +19,20 @@ const app = express();
 
 app.use(helmet());
 
+app.use(cors);
+
 mongoose.connect(MONGO_URL);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.use(requestLogger);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(cors({
-  origin: ['http://localhost:3000', 'https://psychedelicmesto.nomoredomainsmonster.ru/', 'https://api.psychedelicmesto.nomoredomainsmonster.ru/'],
-  credentials: true,
-  maxAge: 300000000,
-}));
 
 app.use(router);
 

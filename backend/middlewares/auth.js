@@ -6,7 +6,7 @@ const { JWT_SECRET, NODE_ENV = '' } = process.env;
 module.exports = (req, res, next) => {
   let payload;
   try {
-    const token = req.headers.authorization;
+    const { token } = req.headers;
     if (!token) {
       throw new ErrorAuth('Необходимо пройти авторизацию');
     }
