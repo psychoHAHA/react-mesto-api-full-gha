@@ -3,8 +3,6 @@ import { apiConfig } from './constants';
 export default class Api {
   constructor({ url, headers }) {
     this._url = url;
-
-    this._headers = headers;
   }
 
   _getResponse(response) {
@@ -19,7 +17,6 @@ export default class Api {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
       headers: {
-        "Content-Type": "application/json",
         authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
     }).then(this._getResponse);
@@ -45,7 +42,6 @@ export default class Api {
 
       body: JSON.stringify({
         name: data.name,
-
         about: data.about,
       }),
     }).then(this._getResponse);
@@ -75,7 +71,6 @@ export default class Api {
 
       body: JSON.stringify({
         name: data.name,
-
         link: data.link,
       }),
     }).then(this._getResponse);

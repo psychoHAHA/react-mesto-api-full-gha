@@ -46,16 +46,14 @@ export const authorize = (email, password) => {
     });
 };
 
-export const getContent = () => {
-  const token = localStorage.getItem('jwt')
+export const getContent = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
+    credentials: 'include',
     headers: {
-      "Accept": "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      authorization: `Bearer ${token}`,
     },
   })
     .then((res) => getResponse(res))
-    .then((data) => data);
 };
