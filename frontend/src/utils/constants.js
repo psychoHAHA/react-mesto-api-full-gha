@@ -1,5 +1,5 @@
 const apiConfig = {
-  url: 'https://api.psychedelicmesto.nomoredomainsmonster.ru',
+  url: 'http://localhost:3000',
 };
 
 export { apiConfig };

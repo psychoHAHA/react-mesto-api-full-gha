@@ -18,7 +18,6 @@ export default class Api {
   getUserData() {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
-      credentials: 'include',
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -29,7 +28,6 @@ export default class Api {
   getAllCards() {
     return fetch(`${this._url}/cards`, {
       method: 'GET',
-      credentials: 'include',
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -39,7 +37,6 @@ export default class Api {
 
   changeUserData(data) {
     return fetch(`${this._url}/users/me`, {
-      credentials: 'include',
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +53,6 @@ export default class Api {
 
   changeAvatarData(data) {
     return fetch(`${this._url}/users/me/avatar`, {
-      credentials: 'include',
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json",
@@ -71,7 +67,6 @@ export default class Api {
 
   createCard(data) {
     return fetch(`${this._url}/cards`, {
-      credentials: 'include',
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -89,7 +84,6 @@ export default class Api {
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      credentials: 'include',
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -101,7 +95,6 @@ export default class Api {
     if (isLiked) {
       return fetch(`${this._url}/cards/${cardId}/likes`, {
         method: 'DELETE',
-        credentials: 'include',
         headers: {
           "Content-Type": "application/json",
           authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -110,8 +103,10 @@ export default class Api {
     } else {
       return fetch(`${this._url}/cards/${cardId}/likes`, {
         method: 'PUT',
-        credentials: 'include',
-        headers: this._headers,
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
       }).then(this._getResponse);
     }
   }

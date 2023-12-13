@@ -1,6 +1,6 @@
 // export const BASE_URL = 'https://auth.nomoreparties.co';
-// export const BASE_URL = 'http://localhost:3000';
-export const BASE_URL = 'https://api.psychedelicmesto.nomoredomainsmonster.ru';
+// export const BASE_URL = 'https://api.psychedelicmesto.nomoredomainsmonster.ru';
+export const BASE_URL = 'http://localhost:3000'
 
 function getResponse(response) {
   if (response.ok) {
@@ -18,7 +18,6 @@ export const register = (email, password) => {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: 'include',
       body: JSON.stringify({ email, password }),
     }
   ).then((response) => getResponse(response));
@@ -33,7 +32,6 @@ export const authorize = (email, password) => {
       headers: {
         "Content-Type": "application/json"
       },
-      credentials: 'include',
       body: JSON.stringify({ email, password }),
     }
   )
@@ -48,12 +46,12 @@ export const authorize = (email, password) => {
     });
 };
 
-export const getContent = (token) => {
-  // const token = localStorage.getItem('jwt')
+export const getContent = () => {
+  const token = localStorage.getItem('jwt')
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
-    credentials: 'include',
     headers: {
+      "Accept": "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
