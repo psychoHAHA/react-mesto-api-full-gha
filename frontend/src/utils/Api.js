@@ -1,7 +1,5 @@
-import { apiConfig } from './constants';
-
-export default class Api {
-  constructor({ url, headers }) {
+class Api {
+  constructor({ url }) {
     this._url = url;
   }
 
@@ -15,19 +13,20 @@ export default class Api {
 
   getUserData() {
     return fetch(`${this._url}/users/me`, {
-      method: 'GET',
       headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`
+        authorization: 'Bearer ' + localStorage.getItem('token'),
+        "Content-Type": "application/json",
       },
     }).then(this._getResponse);
   }
 
   getAllCards() {
+
+    console.log(localStorage.getItem('token'));
     return fetch(`${this._url}/cards`, {
-      method: 'GET',
       headers: {
+        authorization: 'Bearer ' + localStorage.getItem('token'),
         "Content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
     }).then(this._getResponse);
   }
@@ -36,8 +35,8 @@ export default class Api {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: {
+        authorization: 'Bearer ' + localStorage.getItem('token'),
         "Content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
 
       body: JSON.stringify({
@@ -51,8 +50,8 @@ export default class Api {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
+        authorization: 'Bearer ' + localStorage.getItem('token'),
         "Content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
 
       body: JSON.stringify({
@@ -65,8 +64,8 @@ export default class Api {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: {
+        authorization: 'Bearer ' + localStorage.getItem('token'),
         "Content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
 
       body: JSON.stringify({
@@ -80,8 +79,8 @@ export default class Api {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
+        authorization: 'Bearer ' + localStorage.getItem('token'),
         "Content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
     }).then(this._getResponse);
   }
@@ -91,23 +90,26 @@ export default class Api {
       return fetch(`${this._url}/cards/${cardId}/likes`, {
         method: 'DELETE',
         headers: {
+          authorization: 'Bearer ' + localStorage.getItem('token'),
           "Content-Type": "application/json",
-          authorization: `Bearer ${localStorage.getItem('jwt')}`
         },
       }).then(this._getResponse);
     } else {
       return fetch(`${this._url}/cards/${cardId}/likes`, {
         method: 'PUT',
         headers: {
+          authorization: 'Bearer ' + localStorage.getItem('token'),
           "Content-Type": "application/json",
-          authorization: `Bearer ${localStorage.getItem('jwt')}`
-        }
+        },
       }).then(this._getResponse);
     }
   }
 }
 
-export const api = new Api(apiConfig);
+export const api = new Api({
+  url: 'http://localhost:3000',
+})
+
 
 //   deleteLike(cardId) {
 

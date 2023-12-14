@@ -150,7 +150,7 @@ const login = async (req, res, next) => {
 
     const token = generateToken({
       _id: userName._id,
-      email: userName.email,
+      email: userName.email
     });
 
     res.status(200).send({ token: token });
@@ -158,6 +158,75 @@ const login = async (req, res, next) => {
     next(error);
   }
 };
+
+// const login = (req, res, next) => {
+//   const { email, password } = req.body;
+//   return user
+//     .findUserByCredentials(email, password)
+//     .then((user) => {
+//       const token = jwt.sign({ _id: user.id }, JWT_SECRET);
+
+//       res.status(200).send({ token });
+//     })
+//     .catch(next);
+// };
+
+// const createUser = (req, res, next) => {
+//   const { name, about, avatar, password, email } = req.body;
+
+//   bcrypt
+//     .hash(password, 10)
+//     .then((hash) => user.create({ name, about, avatar, email, password: hash }))
+//     .then((data) => res.status(201).send(data))
+//     .catch((error) => {
+//       if (error.code === MONGO_DUPLICATE_ERROR_CODE) {
+//         next(new ErrorConflict('Такой пользователь уже существует'));
+//       } else if (error.name === 'ValidationError') {
+//         next(new ErrorValidation('Ошибка валидации полей'));
+//       } else {
+//         next(error);
+//       }
+//     });
+// };
+
+// const getUsers = (req, res, next) => {
+//   user
+//     .find({})
+//     .then((users) => res.send(users))
+//     .catch(next);
+// };
+
+// const getUserData = (id, res, next) => {
+//   user
+//     .findById(id)
+//     .orFail(() => new ErrorNotFound('Пользователь по заданному id не найден'))
+//     .then((users) => res.send(users))
+//     .catch(next);
+// };
+
+// const getUsersById = (req, res, next) => {
+//   getUserData(req.params.id, res, next);
+// };
+
+// const getUsersInfo = (req, res, next) => {
+//   getUserData(req.user.id, res, next);
+// };
+
+// const updateUserData = (req, res, next) => {
+//   const {
+//     user: { _id },
+//     body,
+//   } = req;
+//   user
+//     .findByIdAndUpdate(_id, body, { new: true, runValidators: true })
+//     .orFail(() => new ErrorNotFound('Пользователь по заданному id не найден'))
+//     .then((user) => res.send(user))
+//     .catch(next);
+// };
+
+// const updateUser = (req, res, next) => updateUserData(res, req, next);
+
+// const updateAvatar = (req, res, next) => updateUserData(res, req, next);
 
 module.exports = {
   getUsers,
