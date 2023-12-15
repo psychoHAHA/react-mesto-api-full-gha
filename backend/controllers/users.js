@@ -24,9 +24,8 @@ const getUsersById = async (req, res, next) => {
 
     if (!userName) {
       throw new ErrorNotFound('Пользователь по ID не найден');
-    } else {
-      res.status(200).send(userName);
     }
+    res.status(200).send(userName);
   } catch (error) {
     if (error.name === 'CastError') {
       next(new ErrorValidation('Ошибка валидации полей'));
@@ -153,7 +152,7 @@ const login = async (req, res, next) => {
       email: userName.email
     });
 
-    res.status(200).send({ token: token });
+    res.status(200).send({ jwt: token });
   } catch (error) {
     next(error);
   }
