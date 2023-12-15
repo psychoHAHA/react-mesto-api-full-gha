@@ -17,7 +17,6 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 import { api } from '../utils/Api';
 
-
 function App() {
   const [cards, setCards] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
@@ -42,13 +41,15 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    loggedIn &&
+    if (loggedIn) {
+      auth.authorize(localStorage.getItem('jwt'));
       Promise.all([api.getUserData(), api.getAllCards()])
         .then(([user, cards]) => {
           setCurrentUser(user);
           setCards(cards);
         })
         .catch((err) => alert(err));
+    }
   }, [loggedIn]);
 
   useEffect(() => {
