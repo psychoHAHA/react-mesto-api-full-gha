@@ -7,7 +7,7 @@ const getCards = async (req, res, next) => {
   try {
     const cards = await card.find({}); // ищем карточки
 
-    return res.send({ cards }); // отправляем карточки
+    return res.send(cards); // отправляем карточки
   } catch (error) {
     next(error);
   }
