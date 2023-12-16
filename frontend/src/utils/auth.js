@@ -1,6 +1,6 @@
 // export const BASE_URL = 'https://auth.nomoreparties.co';
-// export const BASE_URL = 'https://api.psychedelicmesto.nomoredomainsmonster.ru';
-export const BASE_URL = 'http://localhost:5731';
+export const BASE_URL = 'https://api.psychedelicmesto.nomoredomainsmonster.ru';
+// export const BASE_URL = 'http://localhost:3000';
 
 function getResponse(response) {
   if (response.ok) {

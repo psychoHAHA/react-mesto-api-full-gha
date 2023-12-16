@@ -12,8 +12,8 @@ function Card({
   const handleCardDelete = () => onCardDelete(card)
 
   const currentUser = React.useContext(CurrentUserContext)
-  const isOwn = card.owner._id === currentUser._id
-  const isLiked = card.likes.some((i) => i._id === currentUser._id)
+  const isOwn = card.owner === currentUser._id
+  const isLiked = card.likes.some((card) => card === currentUser._id)
   const cardLikeButtonClassName = `group__button ${
     isLiked && "group__button_active"
   }`

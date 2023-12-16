@@ -15,6 +15,7 @@ class Api {
   getUserData() {
     return fetch(`${this._url}/users/me`, {
       headers: {
+        'Content-Type': 'application/json',
         authorization: 'Bearer ' + localStorage.getItem('jwt')
       },
     }).then(this._getResponse);
@@ -23,6 +24,7 @@ class Api {
   getAllCards() {
     return fetch(`${this._url}/cards`, {
       headers: {
+        'Content-Type': 'application/json',
         authorization: 'Bearer ' + localStorage.getItem('jwt')
       }
     }).then(this._getResponse);
@@ -31,6 +33,7 @@ class Api {
   changeUserData(data) {
     return fetch(`${this._url}/users/me`, {
       headers: {
+        'Content-Type': 'application/json',
         authorization: 'Bearer ' + localStorage.getItem('jwt')
       },
       method: 'PATCH',
@@ -44,6 +47,7 @@ class Api {
   changeAvatarData(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       headers: {
+        'Content-Type': 'application/json',
         authorization: 'Bearer ' + localStorage.getItem('jwt')
       },
       method: 'PATCH',
@@ -56,6 +60,7 @@ class Api {
   createCard(data) {
     return fetch(`${this._url}/cards`, {
       headers: {
+        'Content-Type': 'application/json',
         authorization: 'Bearer ' + localStorage.getItem('jwt')
       },
       method: 'POST',
@@ -70,6 +75,7 @@ class Api {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
+        'Content-Type': 'application/json',
         authorization: 'Bearer ' + localStorage.getItem('jwt')
       },
     }).then(this._getResponse);
@@ -79,16 +85,16 @@ class Api {
     if (isLiked) {
       return fetch(`${this._url}/cards/${cardId}/likes`, {
         method: 'DELETE',
-
         headers: {
+          'Content-Type': 'application/json',
           authorization: 'Bearer ' + localStorage.getItem('jwt')
         },
       }).then(this._getResponse);
     } else {
       return fetch(`${this._url}/cards/${cardId}/likes`, {
         method: 'PUT',
-
         headers: {
+          'Content-Type': 'application/json',
           authorization: 'Bearer ' + localStorage.getItem('jwt')
         },
       }).then(this._getResponse);
@@ -104,7 +110,8 @@ class Api {
 }
 
 export const api = new Api({
-  url: 'http://localhost:5731',
+  'Content-Type': 'application/json',
+  url: 'https://api.psychedelicmesto.nomoredomainsmonster.ru',
 });
 
 //   deleteLike(cardId) {

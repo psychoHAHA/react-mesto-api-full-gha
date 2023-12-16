@@ -111,7 +111,7 @@ function App() {
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
 
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((card) => card === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
 
@@ -122,7 +122,7 @@ function App() {
           state.map((c) => (c._id === card._id ? newCard : c))
         );
       })
-      .catch((err) => alert(err));
+      .catch((err) => console.log(err));
   }
 
   function handleUpdateUser(value) {
@@ -133,32 +133,31 @@ function App() {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch((err) => alert(err))
+      .catch((err) => console.log(err))
       .finally(() => setIsPreloading(false));
   }
 
   function handleUpdateAvatar(value) {
     setIsPreloading(true);
-
     api
       .changeAvatarData(value)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch((err) => alert(err))
+      .catch((err) => console.log(err))
       .finally(() => setIsPreloading(false));
   }
 
-  function handleAddPlaceSubmit(value) {
+  function handleAddPlaceSubmit(card) {
     setIsPreloading(true);
     api
-      .createCard(value)
+      .createCard(card)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
-      .catch((err) => alert(err))
+      .catch((err) => console.log(err))
       .finally(() => setIsPreloading(false));
   }
 
@@ -169,7 +168,7 @@ function App() {
         setCards((state) => state.filter((c) => c._id !== card._id));
       })
 
-      .catch((err) => alert(err));
+      .catch((err) => console.log(err));
   }
 
   const handleRegister = (email, password) => {
@@ -188,7 +187,6 @@ function App() {
       .catch((err) => {
         setIsMessage({
           title: 'Что-то пошло не так! Попробуйте ещё раз.',
-
           icon: 'error',
         });
 
@@ -196,29 +194,22 @@ function App() {
       });
   };
 
-  // const handleLogin = (email, password) => {
-  //   auth
-  //     .authorize(email, password)
-  //     .then((data) => {
-  //       if (data.token) {
-  //         setFormValue({ email: '', password: '' });
-  //         setLoggedIn(true);
-  //         navigate('/', { replace: true });
-  //       }
-  //     })
-  //     .catch((err) => alert(err));
-  // };
-
   const handleLogin = (email, password) => {
     auth
       .authorize(email, password)
       .then((res) => {
         localStorage.setItem('jwt', res.jwt);
-        console.log(localStorage.getItem('jwt'), res.jwt);
-        setLoggedIn(true)
+        setLoggedIn(true);
         navigate('/', { replace: true });
       })
-      .catch((error) => alert(error));
+      .catch((err) => {
+        setIsMessage({
+          title: 'Что-то пошло не так! Попробуйте ещё раз.',
+          icon: 'error',
+        });
+
+        console.log(err);
+      });
   };
 
   // Большое спасибо за прикольные фичи, я их обязательно реализую перед началом новой темы, сейчас хочется просто немного передохнуть)))
@@ -235,12 +226,12 @@ function App() {
           navigate('/', { replace: true });
         })
 
-        .catch((err) => alert(err));
+        .catch((err) => console.log(err));
     }
   };
 
   const signOut = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('jwt');
     setLoggedIn(false);
   };
 

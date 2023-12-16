@@ -23,9 +23,10 @@ const getCards = async (req, res, next) => {
 const createCard = async (req, res, next) => {
   try {
     const { name, link } = req.body;
-    const ownerId = req.user;
-    const newCard = await card.create({ name, link, owner: ownerId }); // создаем новую карточку
+    const ownerId = req.user._id;
+    const newCard = await card.create({ name, link, owner: ownerId }); // содаем новую карточку
 
+    // res.send(newCard);
     return res.send(await newCard.save()); // сохраняем новую карточку и отправляем ее
   } catch (error) {
     if (error.name === 'ValidationError') {
@@ -35,6 +36,21 @@ const createCard = async (req, res, next) => {
     }
   }
 };
+
+// const createCard = (req, res, next) => {
+//   const { name, link } = req.body;
+//   const ownerId = req.user;
+//   card
+//     .create({ name, link, owner: ownerId })
+//     .then((cards) => res.status(201).send(cards))
+//     .catch((error) => {
+//       if (error.name === 'ValidationError') {
+//         next(new ErrorValidation('Ошибка валидации полей'));
+//       } else {
+//         next(error);
+//       }
+//     });
+// };
 
 const deleteCard = async (req, res, next) => {
   try {
