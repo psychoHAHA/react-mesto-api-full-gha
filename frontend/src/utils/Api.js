@@ -111,7 +111,7 @@ class Api {
 
 export const api = new Api({
   'Content-Type': 'application/json',
-  url: 'https://api.psychedelicmesto.nomoredomainsmonster.ru',
+  url: 'https://api.psychodelic.mesto.nomoredomainsmonster.ru',
 });
 
 //   deleteLike(cardId) {

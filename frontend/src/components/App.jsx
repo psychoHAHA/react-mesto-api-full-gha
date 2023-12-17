@@ -37,7 +37,6 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(localStorage.getItem('jwt'));
     if (loggedIn) {
       api.authorize(localStorage.getItem('jwt'));
       Promise.all([api.getUserData(), api.getAllCards()])
