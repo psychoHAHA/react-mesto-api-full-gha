@@ -63,7 +63,7 @@ const deleteCard = async (req, res, next) => {
     if (!findCard.owner.equals(userId)) {
       throw new ErrorForbiden('Вы не можете удалить чужую карточку'); // если владелец !== id юзера, то отправляем ошибку
     } else {
-      const delCard = await card.deleteOne({ _id: newCardId });
+      const delCard = await card.deleteOne();
       return res.send(delCard); // если нашли удаляем ее и отправляем ответ об этом
     }
   } catch (error) {
@@ -87,9 +87,9 @@ const likeCard = async (req, res, next) => {
   } catch (error) {
     if (error.name === 'CastError') {
       next(new ErrorValidation('Ошибка валидации полей'));
+    } else {
+      next(error);
     }
-
-    next(error);
   }
 };
 
