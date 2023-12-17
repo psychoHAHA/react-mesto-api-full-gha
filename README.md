@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP 158.160.82.154
+IP 158.160.12.203
 
-Frontend https://psychedelicmesto.nomoredomainsmonster.ru/
+Frontend https://psychodelic.mesto.nomoredomainsmonster.ru/
 
-Backend https://api.psychedelicmesto.nomoredomainsmonster.ru/
+Backend https://api.psychodelic.mesto.nomoredomainsmonster.ru/

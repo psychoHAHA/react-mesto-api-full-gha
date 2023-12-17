@@ -19,7 +19,11 @@ const app = express();
 
 app.use(helmet());
 
-app.use(cors);
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://psychodelic.mesto.nomoredomainsmonster.ru'],
+  credentials: true,
+  maxAge: 30,
+}));
 
 mongoose.connect(MONGO_URL);
 

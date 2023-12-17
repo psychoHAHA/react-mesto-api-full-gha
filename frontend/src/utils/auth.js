@@ -20,6 +20,8 @@ export const register = (email, password) => {
         'Content-Type': 'application/json',
       },
 
+      credentials: 'include',
+
       body: JSON.stringify({ email, password }),
     }
   ).then((response) => getResponse(response));
@@ -31,6 +33,8 @@ export const authorize = (email, password) => {
     headers: {
       'Content-Type': 'application/json',
     },
+
+    credentials: 'include',
     body: JSON.stringify({ email, password }),
   }).then((response) => getResponse(response));
 };
