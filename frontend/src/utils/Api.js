@@ -113,17 +113,3 @@ export const api = new Api({
   'Content-Type': 'application/json',
   url: 'https://api.psychodelic.mesto.nomoredomainsmonster.ru',
 });
-
-//   deleteLike(cardId) {
-
-//     return fetch(`${this._url}/cards/${cardId}/likes`, {
-
-//       method: 'DELETE',
-
-//       headers: this._headers,
-
-//     }).then(this._getResponse)
-
-//   }
-
-// }

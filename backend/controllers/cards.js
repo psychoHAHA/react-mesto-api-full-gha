@@ -13,13 +13,6 @@ const getCards = async (req, res, next) => {
   }
 };
 
-// const getCards = (req, res, next) => {
-//   card
-//     .find({})
-//     .then((cards) =>  res.send(cards))
-//     .catch(next);
-// };
-
 const createCard = async (req, res, next) => {
   try {
     const { name, link } = req.body;
@@ -36,21 +29,6 @@ const createCard = async (req, res, next) => {
     }
   }
 };
-
-// const createCard = (req, res, next) => {
-//   const { name, link } = req.body;
-//   const ownerId = req.user;
-//   card
-//     .create({ name, link, owner: ownerId })
-//     .then((cards) => res.status(201).send(cards))
-//     .catch((error) => {
-//       if (error.name === 'ValidationError') {
-//         next(new ErrorValidation('Ошибка валидации полей'));
-//       } else {
-//         next(error);
-//       }
-//     });
-// };
 
 const deleteCard = async (req, res, next) => {
   try {
@@ -116,58 +94,6 @@ const dislikeCard = async (req, res, next) => {
     next(error);
   }
 };
-
-// const getCards = (req, res, next) => {
-//   card
-//     .find({})
-//     .then((cards) => res.send(cards))
-//     .catch(next);
-// };
-
-// const createCard = (req, res, next) => {
-//   const owner = req.user._id;
-//   const { name, link } = req.body;
-//   card
-//     .create({ name, link, owner })
-//     .then((cards) => res.status(201).send(cards))
-//     .catch((error) => {
-//       if (error.name === 'ValidationError') {
-//         next(new ErrorValidation('Ошибка валидации полей'));
-//       } else {
-//         next(error);
-//       }
-//     });
-// };
-
-// const deleteCard = (req, res, next) => {
-//   const { id } = req.params;
-//   card
-//     .findById(id)
-//     .orFail(() => new ErrorNotFound('Нет карточки по заданному id'))
-//     .then((cards) => {
-//       if (cards.owner.equals(req.user._id)) {
-//         next(new ErrorForbiden('Вы не можете удалить чужую карточку'));
-//       } else {
-//         return card.deleteOne(cards).then(() => res.send(cards));
-//       }
-//     })
-//     .catch(next);
-// };
-
-// const updateLike = (req, res, next, method) => {
-//   const {
-//     params: { id },
-//   } = req;
-//   card
-//     .findByIdAndUpdate(id, { [method]: { likes: req.user._id } }, { new: true })
-//     .orFail(() => new ErrorNotFound('Нет карточки по заданному id'))
-//     .then((cards) => res.send(cards))
-//     .catch(next);
-// };
-
-// const likeCard = (req, res, next) => updateLike(req, res, next, '$addToSet');
-
-// const dislikeCard = (req, res, next) => updateLike(req, res, next, '$pull');
 
 module.exports = {
   getCards,
